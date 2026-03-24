@@ -1,10 +1,12 @@
 # Builds this Astro site at the repository root and deploys dist/ to GitHub Pages.
+# Live site: https://www.openattitude.org
 #
-# Repository: Settings → Pages → Build and deployment → Source: GitHub Actions
-# Optional: Settings → Pages → Custom domain (set DNS CNAME to <user-or-org>.github.io)
+# Repository: Settings → Pages → Source: GitHub Actions
+# Repository: Settings → Pages → Custom domain: www.openattitude.org
+# DNS: CNAME record www → <user-or-org>.github.io (see GitHub Pages custom domain docs)
+# public/CNAME includes www.openattitude.org for the published artifact.
 #
-# For a project site at https://<org>.github.io/<repo>/ only, set base in astro.config.mjs
-# (see Astro "Configure a site" / base path docs) and pass the same value at build time.
+# For a project site at https://<org>.github.io/<repo>/ only, set base in astro.config.mjs.
 
 name: Deploy website to GitHub Pages
 
@@ -54,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: https://www.openattitude.org
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

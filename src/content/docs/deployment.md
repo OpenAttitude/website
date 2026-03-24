@@ -1,43 +1,43 @@
 ---
 title: Build and deployment
-description: Static hosting, GitHub Actions, and custom domain senecaii.openattitude.org.
+description: Static hosting, GitHub Actions, and custom domains for this site and the Seneca II panel.
 order: 5
 ---
 
-## Production build
+## This documentation site (Astro)
+
+**Canonical URL:** **https://www.openattitude.org**
 
 ```bash
 npm install
 npm run build
 ```
 
-Output is **`dist/`**—static HTML, JS, and CSS suitable for any static host or CDN.
+Output is **`dist/`**—static HTML suitable for GitHub Pages or any static host.
 
-### Base URL
+**`astro.config.mjs`** sets **`site: 'https://www.openattitude.org'`** so Astro can emit absolute URLs where needed (sitemaps, RSS, etc.). The site is served at the **domain root**, so **`base`** stays at the default (`/`).
 
-For hosting at the **root** of a custom domain (e.g. **https://senecaii.openattitude.org/**), build with **`BASE_URL=/`** (the default in **`vite.config.ts`** when unset).
+### GitHub Pages (this repository)
 
-For **GitHub project Pages** under a path (`https://org.github.io/repo/`), set:
+The workflow **`.github/workflows/deploy-github-pages.yml`** runs **`npm ci`**, **`npm run build`**, and publishes **`dist/`**.
 
-```bash
-BASE_URL=/repository-name/ npm run build
-```
+1. **Settings → Pages → Source:** GitHub Actions  
+2. **Settings → Pages → Custom domain:** `www.openattitude.org`  
+3. **DNS** (at `openattitude.org`): **CNAME** **`www`** → **`<org>.github.io`** (GitHub shows the exact target for your account or organization)  
+4. **`public/CNAME`** contains `www.openattitude.org` so the build artifact includes the hostname file Pages expects  
+5. Enable **HTTPS** / **Enforce HTTPS** after the certificate is issued  
 
-Vue Router uses **`import.meta.env.BASE_URL`** so client routes match the asset prefix.
+### Subpath hosting (unusual for this site)
 
-## GitHub Pages (organization)
+If you ever published only under **`https://<org>.github.io/<repo>/`**, set **`base: '/<repo>/'`** in **`astro.config.mjs`** (see [Astro configuration](https://docs.astro.build/en/reference/configuration-reference/#base)).
 
-The panel repository includes **`.github/workflows/seneca-ii-github-pages.yml`**:
+---
 
-- Runs **`npm ci`** and **`npm run build`** with **`BASE_URL=/`**
-- Uploads **`dist/`** via **upload-pages-artifact** and **deploy-pages**
-- Documents **https://senecaii.openattitude.org** as the deployment environment URL
+## Seneca II panel (separate repository)
 
-**Repository settings:** Pages → **Source: GitHub Actions**; **Custom domain:** `senecaii.openattitude.org`.
+The **fgpanel** app is deployed separately—for example at **https://senecaii.openattitude.org**—with its own GitHub Actions workflow, **`BASE_URL=/`**, and DNS **CNAME** **`senecaii`** → **`<org>.github.io`**. It uses **Vue / Vite**, not Astro.
 
-**DNS:** CNAME **`senecaii`** → **`<org>.github.io`** (your GitHub organization or user slug).
-
-**`public/CNAME`** in the app ensures the built site carries the hostname for Pages.
+---
 
 ## Local preview
 

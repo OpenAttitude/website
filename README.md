@@ -29,14 +29,18 @@ npm run preview  # serve dist/ locally
 
 ## Deploy
 
-`dist/` is static HTML—usable on any host (GitHub Pages, nginx, Netlify, etc.). Optionally set `site` in `astro.config.mjs` for canonical URLs.
+`dist/` is static HTML—usable on any host (GitHub Pages, nginx, Netlify, etc.).
+
+**Production URL:** **https://www.openattitude.org** — configured via **`site`** in **`astro.config.mjs`** and **`public/CNAME`**.
 
 ### GitHub Pages (this repository)
 
 This folder is the **git repository root**. The workflow **[`.github/workflows/deploy-github-pages.yml`](.github/workflows/deploy-github-pages.yml)** runs on push to **`main`** / **`master`** (and **workflow_dispatch**): **`npm ci`**, **`npm run build`**, then publishes **`dist/`** with **upload-pages-artifact** + **deploy-pages**.
 
 1. **Settings → Pages → Source:** GitHub Actions  
-2. First run: approve **github-pages** under **Settings → Environments** if required  
-3. **Custom domain:** optional; add **`public/CNAME`** if you want the built site to include a hostname file (same pattern as the fgpanel repo)
+2. **Settings → Pages → Custom domain:** `www.openattitude.org`  
+3. **DNS:** CNAME **`www`** → **`<org>.github.io`** (use the value GitHub shows for your org or user)  
+4. First run: approve **github-pages** under **Settings → Environments** if required  
+5. **Enforce HTTPS** after the certificate is ready  
 
-If you use a **project** Pages URL (`https://<org>.github.io/<repo>/`), set Astro’s **`base`** in `astro.config.mjs` to `/<repository-name>/` so asset and route prefixes match (see [Astro `site` and `base`](https://docs.astro.build/en/reference/configuration-reference/#base)).
+If you use a **project** Pages URL (`https://<org>.github.io/<repo>/`) instead, set Astro’s **`base`** in `astro.config.mjs` to `/<repository-name>/` (see [Astro `site` and `base`](https://docs.astro.build/en/reference/configuration-reference/#base)).

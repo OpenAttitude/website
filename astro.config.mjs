@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-	// Set for absolute URLs (sitemap, RSS): site: 'https://your-marketing-host.example',
+	site: 'https://www.openattitude.org',
 	vite: {
 		plugins: [tailwindcss()],
 	},
