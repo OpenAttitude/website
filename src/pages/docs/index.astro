@@ -1,0 +1,40 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import { getCollection } from 'astro:content';
+
+const docs = (await getCollection('docs')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<SiteLayout
+	title="Documentation"
+	description="OpenAttitude and Seneca II panel — overview, instruments, FlightGear, and deployment."
+>
+	<div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
+		<h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Documentation</h1>
+		<p class="mt-4 max-w-2xl text-lg text-slate-400">
+			Markdown-driven articles from the <code class="rounded bg-slate-800 px-1.5 py-0.5 text-cyan-300/80"
+				>docs</code
+			> content collection. Edit <code class="rounded bg-slate-800 px-1.5 py-0.5 text-cyan-300/80"
+				>src/content/docs/*.md</code
+			> in the website project to change copy.
+		</p>
+		<ul class="mt-12 space-y-4">
+			{
+				docs.map((doc) => (
+					<li>
+						<a
+							href={`/docs/${doc.id}`}
+							class="group block rounded-xl border border-slate-800 bg-slate-900/40 p-6 no-underline transition hover:border-cyan-500/40 hover:bg-slate-900/70"
+						>
+							<h2 class="text-lg font-semibold text-white group-hover:text-cyan-400">{doc.data.title}</h2>
+							<p class="mt-2 text-sm leading-relaxed text-slate-400">{doc.data.description}</p>
+							<span class="mt-3 inline-block text-sm font-medium text-cyan-500/90 group-hover:text-cyan-400">
+								Read →
+							</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</SiteLayout>
