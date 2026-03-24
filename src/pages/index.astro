@@ -4,7 +4,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 
 <SiteLayout
 	title="OpenAttitude"
-	description="Seneca II web panel for FlightGear — Vue 3, live properties, and npm instrument packages."
+	description="Cockpit panels for flight simulators like FlightGear  — Vue 3, live properties, and npm instrument packages."
 >
 	<section
 		class="relative overflow-hidden border-b border-slate-800 bg-gradient-to-b from-slate-900/50 to-slate-950"
@@ -16,7 +16,7 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 		<div class="relative mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
 			<p class="text-sm font-medium uppercase tracking-widest text-cyan-400/90">FlightGear · Web panels</p>
 			<h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
-				Seneca II cockpit in the browser
+				Flight Simulator cockpits in the browser
 			</h1>
 			<p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-400">
 				<strong class="text-slate-200">OpenAttitude</strong> ships a full <strong class="text-slate-200"
@@ -79,88 +79,4 @@ import SiteLayout from '../layouts/SiteLayout.astro';
 		</div>
 	</section>
 
-	<section class="border-y border-slate-800 bg-slate-900/30">
-		<div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-			<div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-				<div>
-					<h2 class="text-2xl font-bold text-white sm:text-3xl">Documentation &amp; content</h2>
-					<p class="mt-4 text-slate-400">
-						Long-form pages are authored as <strong class="text-slate-300">Markdown</strong> in an Astro
-						<strong class="text-slate-300">content collection</strong>—edit files under
-						<code class="rounded bg-slate-800 px-1.5 py-0.5 text-sm text-cyan-300/80"
-							>src/content/docs/</code
-						> to update the site without touching layout code.
-					</p>
-					<ul class="mt-6 space-y-2 text-sm text-slate-400">
-						<li class="flex gap-2">
-							<span class="text-cyan-500">→</span>
-							<span>Overview, panel behavior, npm packages, FlightGear, deployment</span>
-						</li>
-						<li class="flex gap-2">
-							<span class="text-cyan-500">→</span>
-							<span>Frontmatter <code class="text-cyan-300/70">title</code>, <code class="text-cyan-300/70"
-								>description</code
-							>, <code class="text-cyan-300/70">order</code> for navigation</span>
-						</li>
-					</ul>
-					<a
-						href="/docs"
-						class="mt-8 inline-flex text-sm font-semibold text-cyan-400 no-underline hover:text-cyan-300"
-					>
-						Browse all docs →
-					</a>
-				</div>
-				<div class="rounded-2xl border border-slate-700 bg-slate-950 p-4 font-mono text-xs leading-relaxed text-slate-400 shadow-xl">
-					<pre class="overflow-x-auto whitespace-pre-wrap break-words">---
-title: Project overview
-description: What OpenAttitude is…
-order: 1
----
-
-## Mission
-…</pre>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-		<h2 class="text-2xl font-bold text-white sm:text-3xl">Quick start (developers)</h2>
-		<ol class="mt-8 space-y-4 text-slate-400">
-			<li class="flex gap-4">
-				<span
-					class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-800 text-sm font-bold text-cyan-400"
-					>1</span
-				>
-				<span
-					><strong class="text-white">Clone</strong> the fgpanel repository and run
-					<code class="rounded bg-slate-800 px-1.5 py-0.5 text-cyan-300/80">npm install</code> /
-					<code class="rounded bg-slate-800 px-1.5 py-0.5 text-cyan-300/80">npm run dev</code>.</span
-				>
-			</li>
-			<li class="flex gap-4">
-				<span
-					class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-800 text-sm font-bold text-cyan-400"
-					>2</span
-				>
-				<span
-					><strong class="text-white">Point</strong> the browser at the dev server with
-					<code class="rounded bg-slate-800 px-1.5 py-0.5 text-cyan-300/80">?fgfs=host:port</code> when
-					FlightGear’s PropertyListener is listening.</span
-				>
-			</li>
-			<li class="flex gap-4">
-				<span
-					class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-800 text-sm font-bold text-cyan-400"
-					>3</span
-				>
-				<span
-					><strong class="text-white">Iterate</strong> on instruments in the OpenAttitude instruments
-					monorepo; publish to npm and bump
-					<code class="rounded bg-slate-800 px-1.5 py-0.5 text-cyan-300/80">@openattitude/*</code> versions
-					in the panel.</span
-				>
-			</li>
-		</ol>
-	</section>
 </SiteLayout>
